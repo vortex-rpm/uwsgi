@@ -24,11 +24,12 @@ Requires(preun):	chkconfig, initscripts
 
 %package python
 Summary:	python plugin for uwsgi
-Requires:       python
+Requires:       uwsgi, python
 
 
 %package php
 Summary:	php plugin for uwsgi
+Requires:	uwsgi
 
 
 %description
