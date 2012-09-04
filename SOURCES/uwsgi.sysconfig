@@ -1,0 +1,8 @@
+# Configuration directory for Emperor mode
+EMPEROR="/etc/uwsgi.d"
+
+# Logfile location
+LOGFILE="/var/log/uwsgi/emperor.log"
+
+# Pidfile location
+PIDFILE="/var/run/uwsgi.pid"

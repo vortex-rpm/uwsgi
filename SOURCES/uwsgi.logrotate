@@ -1,0 +1,12 @@
+/var/log/uwsgi/*.log {
+    daily
+    rotate 10
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        [ ! -f /var/run/uwsgi.pid ] || /bin/kill -HUP `cat /var/run/uwsgi.pid`
+    endscript
+}
+
