@@ -56,8 +56,6 @@ On top of all this, it is designed to be fully modular. This means that
 different plugins can be used in order to add compatibility with tons of
 different technology on top of the same core.
 
-It has only python plugin bundled.
-
 
 %description python
 Python plugin for uwsgi.
@@ -98,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/%{name}.d
 %{_localstatedir}/log/%{name}
 %{_sbindir}/%{name}
-%{_sysconfdir}/sysconfig/%{name}
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %{_initddir}/%{name}
 %{_sysconfdir}/logrotate.d/%{name}
 %doc README
