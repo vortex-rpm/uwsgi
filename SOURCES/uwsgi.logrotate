@@ -4,6 +4,7 @@
     missingok
     notifempty
     compress
+    copytruncate
     sharedscripts
     postrotate
         [ ! -f /var/run/uwsgi.pid ] || /bin/kill -HUP `cat /var/run/uwsgi.pid`
