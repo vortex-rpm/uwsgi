@@ -2,7 +2,7 @@
 
 Name:           uwsgi
 Version:        1.2.5
-Release:        1.vortex%{?dist}
+Release:        2.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
@@ -29,7 +29,7 @@ Requires:       uwsgi, python
 
 %package php
 Summary:	php plugin for uwsgi
-Requires:	uwsgi
+Requires:	uwsgi, php54
 
 
 %description
@@ -128,6 +128,10 @@ fi
 
 
 %changelog
+* Thu Dec 13 2012 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-2.vortex
+- Rebuild against php54 5.4.9.
+- Add php54 to uwsgi-php requirements.
+
 * Sun Sep 04 2012 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-1.vortex
 - Initial packaging.
 
