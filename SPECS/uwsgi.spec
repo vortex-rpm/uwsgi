@@ -14,6 +14,7 @@ Source1:	build.ini
 Source2:	%{name}.sysconfig
 Source3:	%{name}.init
 Source4:	%{name}.logrotate
+Patch0:		plugin_dest.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  python-devel, python27-devel, libedit-devel, bzip2-devel, pcre-devel, gmp-devel
@@ -73,6 +74,7 @@ PHP plugin for uwsgi.
 
 %prep
 %setup -q
+%patch0 -p0
 sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE1}
 cp %{SOURCE1} ./buildconf/
 
@@ -144,7 +146,6 @@ fi
 %changelog
 * Thu Feb 21 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.4.5-1.vortex
 - Update to 1.4.5.
-- Remove patch.
 
 * Wed Feb 20 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-4.vortex
 - rebuilt
