@@ -80,6 +80,7 @@ cp %{SOURCE1} ./buildconf/
 
 
 %build
+python uwsgiconfig.py --build build
 python27 uwsgiconfig.py --plugin plugins/python build python27
 python uwsgiconfig.py --plugin plugins/python build python
 python uwsgiconfig.py --plugin plugins/php build php
