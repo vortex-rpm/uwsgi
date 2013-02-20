@@ -1,8 +1,8 @@
 %global		_libuwsgi	%{_libdir}/uwsgi
 
 Name:           uwsgi
-Version:        1.2.5
-Release:        4.vortex%{?dist}
+Version:        1.4.5
+Release:        1.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
@@ -144,6 +144,9 @@ fi
 
 
 %changelog
+* Thu Feb 21 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.4.5-1.vortex
+- Update to 1.4.5.
+
 * Wed Feb 20 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-4.vortex
 - rebuilt
 
