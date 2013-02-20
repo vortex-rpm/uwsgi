@@ -76,6 +76,7 @@ PHP plugin for uwsgi.
 %setup -q
 %patch0 -p0
 sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE1}
+cp %{SOURCE1} ./buildconf/
 
 
 %build
