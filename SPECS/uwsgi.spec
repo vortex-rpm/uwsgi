@@ -2,7 +2,7 @@
 
 Name:           uwsgi
 Version:        1.2.5
-Release:        2.vortex%{?dist}
+Release:        3.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
@@ -10,14 +10,16 @@ License:        GPLv2
 URL:            http://projects.unbit.it/uwsgi
 Vendor:		Vortex RPM
 Source0:        %{name}-%{version}.tar.gz
-Source1:	build.ini
+Source1:	python.ini
 Source2:	%{name}.sysconfig
 Source3:	%{name}.init
 Source4:	%{name}.logrotate
+Source5:	php.ini
+Source6:	python27.ini
 Patch0:		plugin_dest.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  python-devel, libedit-devel, bzip2-devel, pcre-devel, gmp-devel
+BuildRequires:  python-devel, python27-devel, libedit-devel, bzip2-devel, pcre-devel, gmp-devel
 BuildRequires:	krb5-devel, openssl-devel, php54-embedded, php54-devel, libxml2-devel
 Requires(post):	chkconfig
 Requires(preun):	chkconfig, initscripts
@@ -26,6 +28,9 @@ Requires(preun):	chkconfig, initscripts
 Summary:	python plugin for uwsgi
 Requires:       uwsgi, python
 
+%package python27
+Summary:	python27 plugin for uwsgi
+Requires:       uwsgi, python27
 
 %package php
 Summary:	php plugin for uwsgi
@@ -61,6 +66,10 @@ different technology on top of the same core.
 Python plugin for uwsgi.
 
 
+%description python27
+Python 2.7 plugin for uwsgi.
+
+
 %description php
 PHP plugin for uwsgi.
 
@@ -72,7 +81,10 @@ sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE1}
 
 
 %build
+python27 uwsgiconfig.py --build %{SOURCE6}
+mv python_plugin.so python27_plugin.so
 python uwsgiconfig.py --build %{SOURCE1}
+python uwsgiconfig.py --build %{SOURCE5}
 
 
 %install
@@ -84,6 +96,7 @@ install -D -m 0644 %{SOURCE2} $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/%{name}
 install -D -m 0755 %{SOURCE3} $RPM_BUILD_ROOT/%{_initddir}/%{name}
 install -D -m 0644 %{SOURCE4} $RPM_BUILD_ROOT/%{_sysconfdir}/logrotate.d/%{name}
 install -D -m 0644 python_plugin.so $RPM_BUILD_ROOT/%{_libuwsgi}/python_plugin.so
+install -D -m 0644 python27_plugin.so $RPM_BUILD_ROOT/%{_libuwsgi}/python27_plugin.so
 install -D -m 0644 php_plugin.so $RPM_BUILD_ROOT/%{_libuwsgi}/php_plugin.so
 
 
@@ -104,6 +117,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files python
 %{_libuwsgi}/python_plugin.so
+
+
+%files python27
+%{_libuwsgi}/python27_plugin.so
 
 
 %files php
@@ -128,6 +145,9 @@ fi
 
 
 %changelog
+* Sat Feb 16 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-3.vortex
+- Add uwsgi-python27 for Python 2.7 support.
+
 * Thu Dec 13 2012 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-2.vortex
 - Rebuild against php54 5.4.9.
 - Add php54 to uwsgi-php requirements.
