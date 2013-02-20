@@ -10,13 +10,10 @@ License:        GPLv2
 URL:            http://projects.unbit.it/uwsgi
 Vendor:		Vortex RPM
 Source0:        %{name}-%{version}.tar.gz
-Source1:	python.ini
+Source1:	build.ini
 Source2:	%{name}.sysconfig
 Source3:	%{name}.init
 Source4:	%{name}.logrotate
-Source5:	php.ini
-Source6:	python27.ini
-Source7:	core.ini
 Patch0:		plugin_dest.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -79,14 +76,14 @@ PHP plugin for uwsgi.
 %setup -q
 %patch0 -p0
 sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE1}
+sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE5}
+sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE6}
 
 
 %build
-python uwsgiconfig.py --build %{SOURCE7}
-python27 uwsgiconfig.py --build %{SOURCE6}
-mv python_plugin.so python27_plugin.so
-python uwsgiconfig.py --build %{SOURCE1}
-python uwsgiconfig.py --build %{SOURCE5}
+python27 uwsgiconfig.py --plugin plugins/python build python27
+python uwsgiconfig.py --plugin plugins/python build python
+python uwsgiconfig.py --plugin plugins/php build php
 
 
 %install
