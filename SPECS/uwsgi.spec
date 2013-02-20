@@ -2,7 +2,7 @@
 
 Name:           uwsgi
 Version:        1.2.5
-Release:        3.vortex%{?dist}
+Release:        4.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
@@ -16,6 +16,7 @@ Source3:	%{name}.init
 Source4:	%{name}.logrotate
 Source5:	php.ini
 Source6:	python27.ini
+Source7:	core.ini
 Patch0:		plugin_dest.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -81,6 +82,7 @@ sed -i 's#__PLUGIN_DIR__#%{_libuwsgi}#g' %{SOURCE1}
 
 
 %build
+python uwsgiconfig.py --build %{SOURCE7}
 python27 uwsgiconfig.py --build %{SOURCE6}
 mv python_plugin.so python27_plugin.so
 python uwsgiconfig.py --build %{SOURCE1}
@@ -145,6 +147,9 @@ fi
 
 
 %changelog
+* Wed Feb 20 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-4.vortex
+- rebuilt
+
 * Sat Feb 16 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.2.5-3.vortex
 - Add uwsgi-python27 for Python 2.7 support.
 
