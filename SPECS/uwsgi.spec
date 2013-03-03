@@ -2,7 +2,7 @@
 
 Name:           uwsgi
 Version:        1.4.5
-Release:        1.vortex%{?dist}
+Release:        2.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
@@ -81,7 +81,7 @@ cp %{SOURCE1} ./buildconf/
 
 %build
 python uwsgiconfig.py --build build
-python27 uwsgiconfig.py --plugin plugins/python build python27
+python2.7 uwsgiconfig.py --plugin plugins/python build python27
 python uwsgiconfig.py --plugin plugins/python build python
 python uwsgiconfig.py --plugin plugins/php build php
 
@@ -144,6 +144,9 @@ fi
 
 
 %changelog
+* Sun Mar 03 2013 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 1.4.5-2.vortex
+- Rebuilt with IUS python27.
+
 * Thu Feb 21 2013 Ilya A. Otyutskiy <sharp@thesharp.ru> - 1.4.5-1.vortex
 - Update to 1.4.5.
 
