@@ -55,6 +55,6 @@ case "$1" in
         fi
 	;;
     *)
-        echo $"Usage: $0 {start|stop|status|restart"
+        echo $"Usage: $0 {start|stop|status|restart}"
         exit 2
 esac
