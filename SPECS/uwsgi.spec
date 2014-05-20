@@ -1,34 +1,34 @@
 %global		_libuwsgi	%{_libdir}/uwsgi
 
 Name:           uwsgi
-Version:        1.4.5
-Release:        2.vortex%{?dist}
+Version:        2.0.4
+Release:        1.vortex%{?dist}
 Summary:        application server
 
 Group:          System Environment/Daemons
 License:        GPLv2
 URL:            http://projects.unbit.it/uwsgi
-Vendor:		Vortex RPM
+Vendor:		    Vortex RPM
 Source0:        %{name}-%{version}.tar.gz
-Source1:	build.ini
-Source2:	%{name}.sysconfig
-Source3:	%{name}.init
-Source4:	%{name}.logrotate
-Patch0:		plugin_dest.patch
+Source1:	    build.ini
+Source2:	    %{name}.sysconfig
+Source3:	    %{name}.init
+Source4:	    %{name}.logrotate
+Patch0:		    plugin_dest.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  python-devel, python27-devel, libedit-devel, bzip2-devel, pcre-devel, gmp-devel
-BuildRequires:	krb5-devel, openssl-devel, php54-embedded, php54-devel, libxml2-devel
-Requires(post):	chkconfig
+BuildRequires:      python-devel, python27-devel, libedit-devel, bzip2-devel, pcre-devel, gmp-devel
+BuildRequires:	    krb5-devel, openssl-devel, php54-embedded, php54-devel, libxml2-devel
+Requires(post):	    chkconfig
 Requires(preun):	chkconfig, initscripts
 
 %package python
 Summary:	python plugin for uwsgi
-Requires:       uwsgi, python
+Requires:   uwsgi, python
 
 %package python27
 Summary:	python27 plugin for uwsgi
-Requires:       uwsgi, python27
+Requires:   uwsgi, python27
 
 %package php
 Summary:	php plugin for uwsgi
@@ -144,6 +144,9 @@ fi
 
 
 %changelog
+* Tue May 20 2014 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 2.0.4-1.vortex
+- Update to 2.0.4.
+
 * Sun Mar 03 2013 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 1.4.5-2.vortex
 - Rebuilt with IUS python27.
 
